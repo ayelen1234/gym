@@ -8,9 +8,7 @@ public class PaseDeUnMes extends Pase {
 
 	public PaseDeUnMes(Double porcentajeDeDescuento, Double precio, Boolean congelarPase, LocalDate fechaInicio) {
 		super(porcentajeDeDescuento, precio, congelarPase, fechaInicio);
-
+		
 	}
-
-	
 
 }
