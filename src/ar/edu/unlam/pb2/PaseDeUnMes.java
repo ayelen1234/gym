@@ -5,11 +5,11 @@ import java.time.LocalDate;
 public class PaseDeUnMes extends Pase {
 
 	private final int PLAZO_DE_VENCIMIENTO = 30;
-	private final Double PRECIO_PASE_UN_MES=4000.0;
+	private final Double PRECIO_PASE_UN_MES = 4000.0;
 
 	public PaseDeUnMes(Double porcentajeDeDescuento, Double precio, Boolean congelarPase, LocalDate fechaInicio) {
 		super(porcentajeDeDescuento, precio, congelarPase, fechaInicio);
-		
+
 	}
 
 	@Override
@@ -28,6 +28,11 @@ public class PaseDeUnMes extends Pase {
 
 	public Double getPRECIO_PASE_UN_MES() {
 		return PRECIO_PASE_UN_MES;
+	}
+
+	@Override
+	protected Double calcularPorcentajeDeDescuento() {
+		return 0.0;
 	}
 
 }

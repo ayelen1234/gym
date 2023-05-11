@@ -42,5 +42,13 @@ public class PaseDeTresMeses extends Pase {
 		return fechaDeVencimiento;
 	}
 
+	@Override
+	protected Double calcularPorcentajeDeDescuento() {
+		double precioFinal = 0.0;
+		precioFinal = this.precioPaseTresMeses - (this.precioPaseTresMeses * this.DESCUENTO_PASE_TRES_MESES) / 100;
+		setPrecio(precioFinal);
+
+		return precioFinal;
+	}
 
 }

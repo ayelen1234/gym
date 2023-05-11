@@ -56,4 +56,7 @@ public abstract  class Pase {
 
 	protected abstract LocalDate calcularFechaDeVencimiento();
 
+
+	protected abstract Double calcularPorcentajeDeDescuento();
+
 }

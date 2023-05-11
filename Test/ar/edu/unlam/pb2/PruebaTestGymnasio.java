@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import org.junit.Test;
 
 
-
 public class PruebaTestGymnasio {
 
 	@Test
@@ -217,7 +216,7 @@ public class PruebaTestGymnasio {
 		assertNotNull(nuevoPaseSeisMeses);
 		assertNotNull(nuevoCliente);
 	}
-	
+
 	@Test
 	public void queNoSePuedaAsignarDosPasesAUnCliente() {
 		// datos de entrada
@@ -260,7 +259,7 @@ public class PruebaTestGymnasio {
 		// validacion
 		assertEquals(nuevoPase, nuevoCliente.getPaseDelCliente());
 	}
-	
+
 	@Test
 	public void queSePuedanAgregarVariosClienteAlGimnasio() {
 		// datos de entrada
@@ -311,6 +310,103 @@ public class PruebaTestGymnasio {
 		assertEquals(cantidadEsperada, cantidadObtenida);
 	}
 
+	@Test
+	public void queNoSePuedaAgregarDosClientesIguales() {
+		// datos de entrada
+		Cliente nuevoCliente;
+		Cliente otroCliente;
+		Gimnasio nuevoGym;
+		Pase nuevoPase;
 
+		String nombre = "Luis";
+		Integer dni = 43598590;
+		String mail = "cliente@gmail.com";
+		Integer telefono = 1138721497;
+
+		String nombreOtro = "Luis";
+		Integer dniOtro = 43598590;
+		String mailOtro = "cliente@gmail.com";
+		Integer telefonoOtro = 1138721497;
+
+		String nombreGym = "Luis";
+		String mailGym = "gym@gmail.com";
+		String direccion = "Varela 123";
+		Integer telefonoGym = 11456789;
+		Double recaudacion = 0.0;
+
+		Double porcentajeDeDescuento = 0.0;
+		Double precio = 4000.0;
+		Boolean congelarPase = false;
+		LocalDate fechaInicio = LocalDate.of(2023, 5, 8);
+
+		boolean seAgregoUnCliente = false;
+		boolean seAgregoUnClienteOtro = false;
+		LocalDate fechaEsperada = LocalDate.of(2023, 6, 7);
+
+		int cantidadEsperada = 1;
+		int cantidadObtenida = 0;
+		// ejecucion
+
+		nuevoGym = new Gimnasio(nombreGym, mailGym, direccion, telefonoGym, recaudacion);
+		nuevoPase = new PaseDeUnMes(porcentajeDeDescuento, precio, congelarPase, fechaInicio);
+		otroCliente = new Cliente(nombreOtro, dniOtro, mailOtro, telefonoOtro, nuevoPase);
+		nuevoCliente = new Cliente(nombre, dni, mail, telefono, nuevoPase);
+
+		seAgregoUnClienteOtro = nuevoGym.agregarCliente(otroCliente);
+		seAgregoUnCliente = nuevoGym.agregarCliente(nuevoCliente);
+		cantidadObtenida = nuevoGym.cantidadDePersonas();
+		nuevoPase.calcularFechaDeVencimiento();
+
+		// validacion
+		assertEquals(cantidadEsperada, cantidadObtenida);
+	}
+
+	@Test
+	public void queSePuedaRealizarUnDescuentoEnLosPasesDeTresYSeisMeses() {
+		// datos de entrada
+		Cliente nuevoClienteTresMeses;
+		Cliente nuevoClienteSeisMeses;
+		Pase nuevoPaseTresMeses;
+		Pase nuevoPaseSeisMeses;
+
+		String nombreTresMeses = "Luis";
+		Integer dniTresMeses = 43598590;
+		String mailTresMeses = "cliente@gmail.com";
+		Integer telefonoTresMeses = 1138721497;
+
+		String nombreSeisMeses = "Luis";
+		Integer dniSeisMeses = 45598590;
+		String mailSeisMeses = "cliente@gmail.com";
+		Integer telefonoSeisMeses = 1138721497;
+
+		Double porcentajeDeDescuentoSeisMeses = 30.0;
+		Double precioSeisMeses = 24000.0;
+		Boolean congelarPaseSeisMeses = false;
+		LocalDate fechaInicioSeisMeses = LocalDate.of(2023, 5, 8);
+
+		Double porcentajeDeDescuentoTresMeses = 15.0;
+		Double precioTresMeses = 12000.0;
+		Boolean congelarPaseTresMeses = false;
+		LocalDate fechaInicioTresMeses = LocalDate.of(2023, 5, 8);
+
+		Double precioFinalTresMesesEsperado = 10200.0;
+		Double precioFinalSeisMesesEsperado = 16800.0;
+		// ejecucion
+		nuevoPaseTresMeses = new PaseDeTresMeses(porcentajeDeDescuentoTresMeses, precioTresMeses, congelarPaseTresMeses,
+				fechaInicioTresMeses);
+		nuevoClienteTresMeses = new Cliente(nombreTresMeses, dniTresMeses, mailTresMeses, telefonoTresMeses,
+				nuevoPaseTresMeses);
+
+		nuevoPaseSeisMeses = new PaseDeSeisMeses(porcentajeDeDescuentoSeisMeses, precioSeisMeses, congelarPaseSeisMeses,
+				fechaInicioSeisMeses);
+		nuevoClienteSeisMeses = new Cliente(nombreSeisMeses, dniSeisMeses, mailSeisMeses, telefonoSeisMeses,
+				nuevoPaseSeisMeses);
+
+		Double precioRecibidoTresMeses = nuevoPaseTresMeses.calcularPorcentajeDeDescuento();
+		Double precioRecibidoSeisMeses = nuevoPaseSeisMeses.calcularPorcentajeDeDescuento();
+		// validacion
+		assertEquals(precioFinalTresMesesEsperado, precioRecibidoTresMeses);
+		assertEquals(precioFinalSeisMesesEsperado, precioRecibidoSeisMeses);
+	}
 
 }

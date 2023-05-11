@@ -45,7 +45,14 @@ public class PaseDeSeisMeses extends Pase {
 	public int getCONGELAR_PASE_SEIS_MESES() {
 		return CONGELAR_PASE_SEIS_MESES;
 	}
-	
-	
-}
 
+	@Override
+	protected Double calcularPorcentajeDeDescuento() {
+		double precioFinal = 0.0;
+		precioFinal = this.precioPaseSeisMeses - (this.precioPaseSeisMeses * this.DESCUENTO_PASE_SEIS_MESES) / 100;
+		setPrecio(precioFinal);
+
+		return precioFinal;
+	}
+
+}
