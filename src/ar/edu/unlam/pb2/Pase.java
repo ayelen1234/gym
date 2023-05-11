@@ -53,4 +53,7 @@ public abstract  class Pase {
 		this.fechaInicio = fechaInicio;
 	}
 
+
+	protected abstract LocalDate calcularFechaDeVencimiento();
+
 }
