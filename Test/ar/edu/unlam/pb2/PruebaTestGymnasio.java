@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import org.junit.Test;
 
 
-
 public class PruebaTestGymnasio {
 
 	@Test
@@ -502,6 +501,88 @@ public class PruebaTestGymnasio {
 
 		// validacion
 		assertTrue(seGeneroNumeroUnCliente);
+	}
+
+	@Test
+	public void queSeCalcularLaFechaDeVencimientoDelPaseDeUnMes() {
+		// datos de entrada
+		Cliente nuevoCliente;
+		Gimnasio nuevoGym;
+		Pase nuevoPase;
+
+		String nombre = "Luis";
+		Integer dni = 43598590;
+		String mail = "cliente@gmail.com";
+		Integer telefono = 1138721497;
+
+		String nombreGym = "Luis";
+		String mailGym = "gym@gmail.com";
+		String direccion = "Varela 123";
+		Integer telefonoGym = 11456789;
+		Double recaudacion = 0.0;
+
+		Double porcentajeDeDescuento = 0.0;
+		Double precio = 4000.0;
+		Boolean congelarPase = false;
+		LocalDate fechaInicio = LocalDate.of(2023, 5, 8);
+
+		boolean seAgregoUnCliente = false;
+		LocalDate fechaEsperada = LocalDate.of(2023, 6, 7);
+
+		// ejecucion
+		nuevoGym = new Gimnasio(nombreGym, mailGym, direccion, telefonoGym, recaudacion);
+		nuevoPase = new PaseDeUnMes(porcentajeDeDescuento, precio, congelarPase, fechaInicio);
+		nuevoCliente = new Cliente(nombre, dni, mail, telefono, nuevoPase);
+		seAgregoUnCliente = nuevoGym.agregarCliente(nuevoCliente);
+		nuevoPase.calcularFechaDeVencimiento();
+
+		// validacion
+		assertEquals(fechaEsperada, nuevoPase.getFechaVencimiento());
+	}
+
+	@Test
+	public void queSePuedaDarDeBajaAutomaticamenteUnSocioDespuesDeLaFechaDeVencimiento() {
+		// datos de entrada
+		Cliente nuevoCliente;
+		Gimnasio nuevoGym;
+		Pase nuevoPase;
+
+		String nombre = "Luis";
+		Integer dni = 43598590;
+		String mail = "cliente@gmail.com";
+		Integer telefono = 1138721497;
+
+		String nombreGym = "Luis";
+		String mailGym = "gym@gmail.com";
+		String direccion = "Varela 123";
+		Integer telefonoGym = 11456789;
+		Double recaudacion = 0.0;
+
+		Double porcentajeDeDescuento = 0.0;
+		Double precio = 4000.0;
+		Boolean congelarPase = false;
+		LocalDate fechaInicio = LocalDate.of(2023, 5, 8);
+
+		boolean seAgregoUnCliente = false;
+		LocalDate fechaEsperada = LocalDate.of(2023, 6, 7);
+		boolean sePudoDarDeBaja = false;
+		// ejecucion
+
+		nuevoGym = new Gimnasio(nombreGym, mailGym, direccion, telefonoGym, recaudacion);
+		nuevoPase = new PaseDeUnMes(porcentajeDeDescuento, precio, congelarPase, fechaInicio);
+		nuevoCliente = new Cliente(nombre, dni, mail, telefono, nuevoPase);
+		seAgregoUnCliente = nuevoGym.agregarCliente(nuevoCliente);
+		nuevoPase.calcularFechaDeVencimiento();
+		nuevoGym.buscarCliente(nuevoCliente);
+		sePudoDarDeBaja = nuevoGym.darDeBajaCliente(nuevoCliente, nuevoPase);
+
+		// validacion
+		assertNotNull(nuevoGym);
+		assertNotNull(nuevoPase);
+		assertNotNull(nuevoCliente);
+		assertTrue(seAgregoUnCliente);
+		assertEquals(fechaEsperada, nuevoPase.getFechaVencimiento());
+		assertTrue(sePudoDarDeBaja);
 	}
 
 }

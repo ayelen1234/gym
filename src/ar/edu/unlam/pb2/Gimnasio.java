@@ -1,8 +1,7 @@
 package ar.edu.unlam.pb2;
 
+import java.time.LocalDate;
 import java.util.HashSet;
-
-
 
 public class Gimnasio {
 
@@ -77,17 +76,17 @@ public class Gimnasio {
 	}
 
 	public int cantidadEntrenadores() {
-		
+
 		return this.entrenadores.size();
 	}
 
 	public boolean agregarCliente(Cliente nuevoCliente) {
 		return this.clientes.add(nuevoCliente);
-		
+
 	}
 
 	public int cantidadDePersonas() {
-		
+
 		return this.clientes.size();
 	}
 
@@ -104,10 +103,21 @@ public class Gimnasio {
 		Integer numeroGenerado = (int) Math.round(Math.random() * (100 - 0 + 1) + 0);
 		nuevoCliente.setNumeroDeSocio(numeroGenerado);
 		return true;
-	
-	}
-		
-	
 
-	
+	}
+
+	public boolean buscarCliente(Cliente nuevoCliente) {
+		return this.clientes.contains(nuevoCliente);
+
+	}
+
+	public boolean darDeBajaCliente(Cliente nuevoCliente, Pase nuevoPase) {
+		boolean sePudoDarDeBaja = false;
+		if (LocalDate.now().compareTo(nuevoPase.getFechaVencimiento()) < 0) {
+			this.clientes.remove(nuevoCliente);
+			sePudoDarDeBaja = true;
+		}
+		return sePudoDarDeBaja;
+	}
+
 }
