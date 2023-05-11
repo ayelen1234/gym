@@ -35,4 +35,12 @@ public class PaseDeUnMes extends Pase {
 		return 0.0;
 	}
 
-}
+	@Override
+	protected LocalDate congelarPase() {
+		LocalDate fecha = null;
+		return fecha;
+	}
+
+	}
+
+

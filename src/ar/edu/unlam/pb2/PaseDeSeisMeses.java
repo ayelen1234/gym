@@ -55,4 +55,20 @@ public class PaseDeSeisMeses extends Pase {
 		return precioFinal;
 	}
 
-}
+	@Override
+	protected LocalDate congelarPase() {
+		LocalDate fechaVencimiento;
+		LocalDate extensionDePaseSeisMeses = null;
+		boolean seCongeloPase = true;
+
+		if (this.getCongelarPase().equals(false)) {
+			fechaVencimiento = calcularFechaDeVencimiento();
+			extensionDePaseSeisMeses = fechaVencimiento.plusDays(CONGELAR_PASE_SEIS_MESES);
+			this.setCongelarPase(seCongeloPase);
+		}
+		return extensionDePaseSeisMeses;
+	}
+
+	}
+
+

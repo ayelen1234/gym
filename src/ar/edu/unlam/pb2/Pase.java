@@ -59,4 +59,13 @@ public abstract  class Pase {
 
 	protected abstract Double calcularPorcentajeDeDescuento();
 
+
+	protected abstract LocalDate congelarPase();
+
+
+	
+
+
+	
+
 }
