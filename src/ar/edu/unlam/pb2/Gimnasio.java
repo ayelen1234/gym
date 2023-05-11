@@ -74,4 +74,14 @@ public class Gimnasio {
 		return this.entrenadores.add(nuevoEntrenador);
 	}
 
+	public int cantidadEntrenadores() {
+		
+		return this.entrenadores.size();
+	}
+
+	public boolean agregarCliente(Cliente nuevoCliente) {
+		return this.clientes.add(nuevoCliente);
+		
+	}
+
 }
