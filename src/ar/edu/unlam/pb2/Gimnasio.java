@@ -14,7 +14,7 @@ public class Gimnasio {
 	private HashSet<Entrenador> entrenadores;
 
 	public Gimnasio(String nombreGym, String mailGym, String direccion, Integer telefonoGym, Double recaudacion) {
-		this.nombre = nombre;
+		this.nombre = nombreGym;
 		this.mailGym = mailGym;
 		this.direccion = direccion;
 		this.telefonoGym = telefonoGym;
@@ -76,7 +76,6 @@ public class Gimnasio {
 	}
 
 	public int cantidadEntrenadores() {
-
 		return this.entrenadores.size();
 	}
 
@@ -118,6 +117,13 @@ public class Gimnasio {
 			sePudoDarDeBaja = true;
 		}
 		return sePudoDarDeBaja;
+	}
+
+	@Override
+	public String toString() {
+		return "Gimnasio [nombre=" + nombre + ", mailGym=" + mailGym + ", direccion=" + direccion + ", telefonoGym="
+				+ telefonoGym + ", recaudacion=" + recaudacion + ", clientes=" + clientes + ", entrenadores="
+				+ entrenadores + "]";
 	}
 
 }

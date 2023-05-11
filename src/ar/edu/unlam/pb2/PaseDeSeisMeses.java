@@ -69,6 +69,11 @@ public class PaseDeSeisMeses extends Pase {
 		return extensionDePaseSeisMeses;
 	}
 
+	@Override
+	public String toString() {
+		return "PaseDeSeisMeses [precioPaseSeisMeses=" + precioPaseSeisMeses + ", PLAZO_VENCIMIENTO_SEIS_MESES="
+				+ PLAZO_VENCIMIENTO_SEIS_MESES + ", DESCUENTO_PASE_SEIS_MESES=" + DESCUENTO_PASE_SEIS_MESES
+				+ ", CONGELAR_PASE_SEIS_MESES=" + CONGELAR_PASE_SEIS_MESES + "]";
 	}
 
-
+}

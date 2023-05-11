@@ -1,7 +1,5 @@
 package ar.edu.unlam.pb2;
 
-
-
 public class Cliente extends Persona {
 
 	private Integer numeroDeSocio;

@@ -9,7 +9,7 @@ public class PaseDeUnMes extends Pase {
 
 	public PaseDeUnMes(Double porcentajeDeDescuento, Double precio, Boolean congelarPase, LocalDate fechaInicio) {
 		super(porcentajeDeDescuento, precio, congelarPase, fechaInicio);
-
+		setPrecio(PRECIO_PASE_UN_MES);
 	}
 
 	@Override
@@ -41,6 +41,10 @@ public class PaseDeUnMes extends Pase {
 		return fecha;
 	}
 
+	@Override
+	public String toString() {
+		return "PaseDeUnMes [PLAZO_DE_VENCIMIENTO=" + PLAZO_DE_VENCIMIENTO + ", PRECIO_PASE_UN_MES="
+				+ PRECIO_PASE_UN_MES + "]";
 	}
 
-
+}

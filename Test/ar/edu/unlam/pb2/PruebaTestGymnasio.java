@@ -6,8 +6,6 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
-
-
 public class PruebaTestGymnasio {
 
 	@Test
@@ -585,7 +583,7 @@ public class PruebaTestGymnasio {
 		assertEquals(fechaEsperada, nuevoPase.getFechaVencimiento());
 		assertTrue(sePudoDarDeBaja);
 	}
-	
+
 	@Test
 	public void queSePuedaExtenderLaFechaDeVencimientoDelPaseTresMesesASieteDiasMas() {
 		// datos de entrada
@@ -642,5 +640,58 @@ public class PruebaTestGymnasio {
 		assertEquals(fechaEsperada, fechaRecibida);
 	}
 
+	@Test
+	public void queNoSePuedaExtenderLaFechaDeVencimientoDelPaseTresMesesASieteDiasMasSiYaFueSolicitado() {
+		// datos de entrada
+		Cliente nuevoCliente;
+		Pase nuevoPaseTresMeses;
 
+		String nombre = "Luis";
+		Integer dni = 43598590;
+		String mail = "cliente@gmail.com";
+		Integer telefono = 1138721497;
+
+		Double porcentajeDeDescuento = 15.0;
+		Double precio = 12000.0;
+		Boolean congelarPase = false;
+		LocalDate fechaInicio = LocalDate.of(2023, 5, 9);
+
+		Boolean yaFueCongelado = true;
+		// ejecucion
+		nuevoPaseTresMeses = new PaseDeTresMeses(porcentajeDeDescuento, precio, congelarPase, fechaInicio);
+		nuevoCliente = new Cliente(nombre, dni, mail, telefono, nuevoPaseTresMeses);
+
+		LocalDate primerCongelamiento = nuevoPaseTresMeses.congelarPase();
+		LocalDate segundoCongelamiento = nuevoPaseTresMeses.congelarPase();// no entra al IF
+
+		// validacion
+		assertEquals(yaFueCongelado, nuevoPaseTresMeses.getCongelarPase());
+	}
+
+	@Test
+	public void queNoSePuedaExtenderLaFechaDeVencimientoDelPaseSeisMesesAQuinseDiasMasSiYaFueSolicitado() {
+		// datos de entrada
+		Cliente nuevoCliente;
+		Pase nuevoPaseSeisMeses;
+
+		String nombre = "Luis";
+		Integer dni = 43598590;
+		String mail = "cliente@gmail.com";
+		Integer telefono = 1138721497;
+
+		Double porcentajeDeDescuento = 15.0;
+		Double precio = 12000.0;
+		Boolean congelarPase = false;
+		LocalDate fechaInicio = LocalDate.of(2023, 5, 9);
+
+		Boolean yaFueCongelado = true;
+		// ejecucion
+		nuevoPaseSeisMeses = new PaseDeSeisMeses(porcentajeDeDescuento, precio, congelarPase, fechaInicio);
+		nuevoCliente = new Cliente(nombre, dni, mail, telefono, nuevoPaseSeisMeses);
+
+		LocalDate primerCongelamiento = nuevoPaseSeisMeses.congelarPase();
+		LocalDate segundoCongelamiento = nuevoPaseSeisMeses.congelarPase();
+		// validacion
+		assertEquals(yaFueCongelado, nuevoPaseSeisMeses.getCongelarPase());
+	}
 }

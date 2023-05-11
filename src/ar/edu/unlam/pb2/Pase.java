@@ -2,7 +2,7 @@ package ar.edu.unlam.pb2;
 
 import java.time.LocalDate;
 
-public abstract  class Pase {
+public abstract class Pase {
 	protected Double porcentajeDeDescuento;
 	protected Double precio;
 	protected LocalDate fechaVencimiento;
@@ -16,7 +16,6 @@ public abstract  class Pase {
 		this.fechaInicio = fechaInicio;
 	}
 
-	
 	public void setPorcentajeDeDescuento(Double porcentajeDeDescuento) {
 		this.porcentajeDeDescuento = porcentajeDeDescuento;
 	}
@@ -53,19 +52,16 @@ public abstract  class Pase {
 		this.fechaInicio = fechaInicio;
 	}
 
-
 	protected abstract LocalDate calcularFechaDeVencimiento();
-
 
 	protected abstract Double calcularPorcentajeDeDescuento();
 
-
 	protected abstract LocalDate congelarPase();
 
-
-	
-
-
-	
+	@Override
+	public String toString() {
+		return "Pase [porcentajeDeDescuento=" + porcentajeDeDescuento + ", precio=" + precio + ", fechaVencimiento="
+				+ fechaVencimiento + ", congelarPase=" + congelarPase + ", fechaInicio=" + fechaInicio + "]";
+	}
 
 }

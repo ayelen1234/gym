@@ -2,8 +2,6 @@ package ar.edu.unlam.pb2;
 
 import java.util.Objects;
 
-
-
 public abstract class Persona {
 	private String nombre;
 	private Integer dni;

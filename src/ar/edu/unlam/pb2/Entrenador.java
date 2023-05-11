@@ -1,6 +1,7 @@
 package ar.edu.unlam.pb2;
 
 public class Entrenador extends Persona {
+
 	private Especialidades especialidadDelEntrenador;
 
 	public Entrenador(String nombre, Integer dni, Especialidades especialidadEntrenador, String mail,
@@ -15,6 +16,11 @@ public class Entrenador extends Persona {
 
 	public void setEspecialidadDelEntrenador(Especialidades especialidadDelEntrenador) {
 		this.especialidadDelEntrenador = especialidadDelEntrenador;
+	}
+
+	@Override
+	public String toString() {
+		return "Entrenador [especialidadDelEntrenador=" + especialidadDelEntrenador + "]";
 	}
 
 }

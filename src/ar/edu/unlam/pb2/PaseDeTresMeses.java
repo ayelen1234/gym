@@ -56,13 +56,20 @@ public class PaseDeTresMeses extends Pase {
 		LocalDate fechaVencimiento;
 		LocalDate extensionDePase = null;
 		boolean seCongeloPase = true;
-		
+
 		if (this.getCongelarPase().equals(false)) {
 			fechaVencimiento = calcularFechaDeVencimiento();
 			extensionDePase = fechaVencimiento.plusDays(CONGELAR_PASE_TRES_MESES);
 			this.setCongelarPase(seCongeloPase);
 		}
 		return extensionDePase;
+	}
+
+	@Override
+	public String toString() {
+		return "PaseDeTresMeses [precioPaseTresMeses=" + precioPaseTresMeses + ", PLAZO_VENCIMIENTO_TRES_MESES="
+				+ PLAZO_VENCIMIENTO_TRES_MESES + ", DESCUENTO_PASE_TRES_MESES=" + DESCUENTO_PASE_TRES_MESES
+				+ ", CONGELAR_PASE_TRES_MESES=" + CONGELAR_PASE_TRES_MESES + "]";
 	}
 
 }
