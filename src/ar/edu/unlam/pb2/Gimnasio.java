@@ -10,6 +10,7 @@ public class Gimnasio {
 	private Integer telefonoGym;
 	private Double recaudacion;
 	private HashSet<Cliente> clientes;
+	private HashSet<Entrenador> entrenadores;
 
 	public Gimnasio(String nombreGym, String mailGym, String direccion, Integer telefonoGym, Double recaudacion) {
 		this.nombre = nombre;
@@ -18,6 +19,7 @@ public class Gimnasio {
 		this.telefonoGym = telefonoGym;
 		this.recaudacion = recaudacion;
 		this.clientes = new HashSet<>();
+		this.entrenadores = new HashSet<>();
 	}
 
 	public String getNombre() {
@@ -68,5 +70,8 @@ public class Gimnasio {
 		this.clientes = clientes;
 	}
 
+	public boolean agregarEntrenador(Entrenador nuevoEntrenador) {
+		return this.entrenadores.add(nuevoEntrenador);
+	}
 
 }

@@ -7,8 +7,6 @@ import java.time.LocalDate;
 import org.junit.Test;
 
 public class PruebaTestGymnasio {
-	
-	
 
 	@Test
 	public void queSePuedaCrearUnPaseTipoDeUnMesYAsignarleUnCliente() {
@@ -51,6 +49,46 @@ public class PruebaTestGymnasio {
 		assertNotNull(nuevoGym);
 	}
 
-	
+	@Test
+	public void queSePuedaCrearUnEntrenador() {
+		// datos de entrada
+		Entrenador nuevoEntrenador;
+
+		String nombre = "Luis";
+		Integer dni = 43598590;
+		String mail = "cliente@gmail.com";
+		Integer telefono = 1138721497;
+		Especialidades especialidadEntrenador = Especialidades.CROSSFIT;
+		// ejecucion
+		nuevoEntrenador = new Entrenador(nombre, dni, especialidadEntrenador, mail, telefono);
+		// validacion
+		assertNotNull(nuevoEntrenador);
+	}
+
+	@Test
+	public void queSePuedaAgregarUnEntrenadorAlGimnasio() {
+		// datos de entrada
+		Entrenador nuevoEntrenador;
+		Gimnasio nuevoGym;
+
+		String nombre = "Luis";
+		Integer dni = 43598590;
+		String mail = "cliente@gmail.com";
+		Integer telefono = 1138721497;
+		Especialidades especialidadEntrenador = Especialidades.CROSSFIT;
+
+		String nombreGym = "Luis";
+		String mailGym = "gym@gmail.com";
+		String direccion = "Varela 123";
+		Integer telefonoGym = 11456789;
+		Double recaudacion = 0.0;
+
+		// ejecucion
+		nuevoGym = new Gimnasio(nombreGym, mailGym, direccion, telefonoGym, recaudacion);
+		nuevoEntrenador = new Entrenador(nombre, dni, especialidadEntrenador, mail, telefono);
+		boolean seAgrego = nuevoGym.agregarEntrenador(nuevoEntrenador);
+		// validacion
+		assertTrue(seAgrego);
+	}
 
 }
