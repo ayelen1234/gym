@@ -2,6 +2,8 @@ package ar.edu.unlam.pb2;
 
 import java.util.HashSet;
 
+
+
 public class Gimnasio {
 
 	private String nombre;
@@ -88,6 +90,24 @@ public class Gimnasio {
 		
 		return this.clientes.size();
 	}
+
+	public Double recaudacion() {
+		Double acumulador = 0.0;
+		for (Cliente cliente : clientes) {
+			Pase paseParaRecaudacion = cliente.getPaseDelCliente();
+			acumulador += paseParaRecaudacion.getPrecio();
+		}
+		return acumulador;
+	}
+
+	public boolean generarNumeroDeCliente(Cliente nuevoCliente) {
+		Integer numeroGenerado = (int) Math.round(Math.random() * (100 - 0 + 1) + 0);
+		nuevoCliente.setNumeroDeSocio(numeroGenerado);
+		return true;
+	
+	}
+		
+	
 
 	
 }
