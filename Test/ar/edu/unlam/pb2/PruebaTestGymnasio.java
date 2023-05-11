@@ -6,9 +6,6 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
-
-
-
 public class PruebaTestGymnasio {
 
 	@Test
@@ -130,7 +127,7 @@ public class PruebaTestGymnasio {
 		// validacion
 		assertEquals(cantidadEntrenadores, cantidadObtenida);
 	}
-	
+
 	@Test
 	public void queSeDeAltaUnClienteEnElGimnasioConPaseDeUnMes() {
 		// datos de entrada
@@ -169,5 +166,54 @@ public class PruebaTestGymnasio {
 		assertTrue(seAgregoUnCliente);
 	}
 
-	
+	@Test
+	public void queSePuedaCrearUnPaseYElTipoDeTresMeses() {
+		// datos de entrada
+		Cliente nuevoCliente;
+		Pase nuevoPaseTresMeses;
+
+		String nombre = "Luis";
+		Integer dni = 43598590;
+		String mail = "cliente@gmail.com";
+		Integer telefono = 1138721497;
+
+		Double porcentajeDeDescuento = 15.0;
+		Double precio = 12000.0;
+		Boolean congelarPase = false;
+		LocalDate fechaInicio = LocalDate.of(2023, 5, 8);
+
+		// ejecucion
+		nuevoPaseTresMeses = new PaseDeTresMeses(porcentajeDeDescuento, precio, congelarPase, fechaInicio);
+		nuevoCliente = new Cliente(nombre, dni, mail, telefono, nuevoPaseTresMeses);
+
+		// validacion
+		assertNotNull(nuevoPaseTresMeses);
+		assertNotNull(nuevoCliente);
+	}
+
+	@Test
+	public void queSePuedaCrearUnPaseYElTipoDeSeisMeses() {
+		// datos de entrada
+		Cliente nuevoCliente;
+		Pase nuevoPaseSeisMeses;
+
+		String nombre = "Luis";
+		Integer dni = 43598590;
+		String mail = "cliente@gmail.com";
+		Integer telefono = 1138721497;
+
+		Double porcentajeDeDescuento = 30.0;
+		Double precio = 24000.0;
+		Boolean congelarPase = false;
+		LocalDate fechaInicio = LocalDate.of(2023, 5, 8);
+
+		// ejecucion
+		nuevoPaseSeisMeses = new PaseDeSeisMeses(porcentajeDeDescuento, precio, congelarPase, fechaInicio);
+		nuevoCliente = new Cliente(nombre, dni, mail, telefono, nuevoPaseSeisMeses);
+
+		// validacion
+		assertNotNull(nuevoPaseSeisMeses);
+		assertNotNull(nuevoCliente);
+	}
+
 }
