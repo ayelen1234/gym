@@ -33,4 +33,14 @@ public class PaseDeTresMeses extends Pase {
 		return CONGELAR_PASE_TRES_MESES;
 	}
 
+	@Override
+	protected LocalDate calcularFechaDeVencimiento() {
+		LocalDate fechaDeVencimiento = null;
+		LocalDate fechaIngreso = this.fechaInicio;
+		fechaDeVencimiento = fechaIngreso.plusDays(PLAZO_VENCIMIENTO_TRES_MESES);
+		super.setFechaVencimiento(fechaDeVencimiento);
+		return fechaDeVencimiento;
+	}
+
+
 }

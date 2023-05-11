@@ -84,4 +84,10 @@ public class Gimnasio {
 		
 	}
 
+	public int cantidadDePersonas() {
+		
+		return this.clientes.size();
+	}
+
+	
 }

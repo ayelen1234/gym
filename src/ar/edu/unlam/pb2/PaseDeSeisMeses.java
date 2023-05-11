@@ -14,4 +14,38 @@ public class PaseDeSeisMeses extends Pase {
 		setPorcentajeDeDescuento(DESCUENTO_PASE_SEIS_MESES);
 	}
 
+	@Override
+	protected LocalDate calcularFechaDeVencimiento() {
+		LocalDate fechaDeVencimiento = null;
+		LocalDate fechaIngreso = this.fechaInicio;
+
+		if (this.getCongelarPase().equals(false)) {
+			fechaDeVencimiento = fechaIngreso.plusDays(PLAZO_VENCIMIENTO_SEIS_MESES);
+			super.setFechaVencimiento(fechaDeVencimiento);
+		}
+		return fechaDeVencimiento;
+	}
+
+	public double getPrecioPaseSeisMeses() {
+		return precioPaseSeisMeses;
+	}
+
+	public void setPrecioPaseSeisMeses(double precioPaseSeisMeses) {
+		this.precioPaseSeisMeses = precioPaseSeisMeses;
+	}
+
+	public int getPLAZO_VENCIMIENTO_SEIS_MESES() {
+		return PLAZO_VENCIMIENTO_SEIS_MESES;
+	}
+
+	public double getDESCUENTO_PASE_SEIS_MESES() {
+		return DESCUENTO_PASE_SEIS_MESES;
+	}
+
+	public int getCONGELAR_PASE_SEIS_MESES() {
+		return CONGELAR_PASE_SEIS_MESES;
+	}
+	
+	
 }
+

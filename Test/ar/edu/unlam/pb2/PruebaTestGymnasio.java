@@ -6,6 +6,8 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
+
+
 public class PruebaTestGymnasio {
 
 	@Test
@@ -215,5 +217,100 @@ public class PruebaTestGymnasio {
 		assertNotNull(nuevoPaseSeisMeses);
 		assertNotNull(nuevoCliente);
 	}
+	
+	@Test
+	public void queNoSePuedaAsignarDosPasesAUnCliente() {
+		// datos de entrada
+		Cliente nuevoCliente;
+		Gimnasio nuevoGym;
+		Pase nuevoPase;
+		Pase otroPase;
+
+		String nombre = "Luis";
+		Integer dni = 43598590;
+		String mail = "cliente@gmail.com";
+		Integer telefono = 1138721497;
+
+		String nombreGym = "Luis";
+		String mailGym = "gym@gmail.com";
+		String direccion = "Varela 123";
+		Integer telefonoGym = 11456789;
+		Double recaudacion = 0.0;
+
+		Double porcentajeDeDescuento = 0.0;
+		Double precio = 4000.0;
+		Boolean congelarPase = false;
+		LocalDate fechaInicio = LocalDate.of(2023, 5, 8);
+
+		Double porcentajeDeDescuentoOtro = 0.0;
+		Double precioOtro = 4000.0;
+		Boolean congelarPaseOtro = false;
+		LocalDate fechaInicioOtro = LocalDate.of(2023, 5, 8);
+
+		// ejecucion
+		nuevoGym = new Gimnasio(nombreGym, mailGym, direccion, telefonoGym, recaudacion);
+
+		nuevoPase = new PaseDeUnMes(porcentajeDeDescuento, precio, congelarPase, fechaInicio);
+		// esto se ve dentro del set de Cliente
+		otroPase = new PaseDeUnMes(porcentajeDeDescuentoOtro, precioOtro, congelarPaseOtro, fechaInicioOtro);
+		nuevoCliente = new Cliente(nombre, dni, mail, telefono, nuevoPase);
+
+		nuevoCliente.setPaseDelCliente(otroPase);
+
+		// validacion
+		assertEquals(nuevoPase, nuevoCliente.getPaseDelCliente());
+	}
+	
+	@Test
+	public void queSePuedanAgregarVariosClienteAlGimnasio() {
+		// datos de entrada
+		Cliente nuevoCliente;
+		Cliente otroCliente;
+		Gimnasio nuevoGym;
+		Pase nuevoPase;
+
+		String nombre = "Luis";
+		Integer dni = 43598590;
+		String mail = "cliente@gmail.com";
+		Integer telefono = 1138721497;
+
+		String nombreOtro = "Agustin";
+		Integer dniOtro = 35598590;
+		String mailOtro = "clientx@gmail.com";
+		Integer telefonoOtro = 1138721487;
+
+		String nombreGym = "Luis";
+		String mailGym = "gym@gmail.com";
+		String direccion = "Varela 123";
+		Integer telefonoGym = 11456789;
+		Double recaudacion = 0.0;
+
+		Double porcentajeDeDescuento = 0.0;
+		Double precio = 4000.0;
+		Boolean congelarPase = false;
+		LocalDate fechaInicio = LocalDate.of(2023, 5, 8);
+
+		boolean seAgregoUnCliente = false;
+		boolean seAgregoUnClienteOtro = false;
+		LocalDate fechaEsperada = LocalDate.of(2023, 6, 7);
+		int cantidadEsperada = 2;
+		int cantidadObtenida = 0;
+		// ejecucion
+
+		nuevoGym = new Gimnasio(nombreGym, mailGym, direccion, telefonoGym, recaudacion);
+		nuevoPase = new PaseDeUnMes(porcentajeDeDescuento, precio, congelarPase, fechaInicio);
+		otroCliente = new Cliente(nombreOtro, dniOtro, mailOtro, telefonoOtro, nuevoPase);
+		nuevoCliente = new Cliente(nombre, dni, mail, telefono, nuevoPase);
+
+		seAgregoUnClienteOtro = nuevoGym.agregarCliente(otroCliente);
+		seAgregoUnCliente = nuevoGym.agregarCliente(nuevoCliente);
+		cantidadObtenida = nuevoGym.cantidadDePersonas();
+		nuevoPase.calcularFechaDeVencimiento();
+
+		// validacion
+		assertEquals(cantidadEsperada, cantidadObtenida);
+	}
+
+
 
 }
